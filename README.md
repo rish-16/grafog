@@ -6,7 +6,7 @@ Data augmentations are heavily used in Computer Vision and Natural Language Proc
 
 `grafog` (portmanteau of "graph" and "augmentation") provides a set of methods to perform data augmentation on graph-structured data, especially meant for self-supervised node classification. It is built on top of `torch_geometric` and is easily integrable with its homogenous [`Data`](https://pytorch-geometric.readthedocs.io/en/latest/modules/data.html#torch_geometric.data.Data) API.
 
-This library is heavily inspired by `GAug` from the paper "Data Augmentation for Graph Neural Networks" [[abs](https://arxiv.org/2006.06830), [pdf](https://arxiv.org/pdf/2006.06830.pdf)].
+This library is heavily inspired by `GAug` from the paper "Data Augmentation for Graph Neural Networks" [[abs](https://arxiv.org/abs/2006.06830), [pdf](https://arxiv.org/pdf/2006.06830.pdf)].
 
 ## Installation
 You can install the library via `pip`:
