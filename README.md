@@ -34,8 +34,10 @@ The library comes with the following data augmentations:
 > There are many more features to be added over time, so stay tuned!
 
 ```python
+from torch_geometric.datasets import CoraFull
+from torch_geometric.data import Data
+from torch_geometric.loader import DataLoader
 import grafog.transforms as T
-from torch_geometric.data import Data, DataLoader
 
 transforms = T.Compose([
     T.RandomNodeDrop(),
@@ -44,7 +46,9 @@ transforms = T.Compose([
     T.IdealEdgeAddition(),
 ])
 
-train_loader = DataLoader()
+data = CoraFull()
+data = T(data) # apply the augmentation(s)
+train_loader = DataLoader(data, ...)
 ```
 
 ## Contributions
