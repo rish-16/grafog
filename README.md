@@ -35,7 +35,6 @@ The library comes with the following data augmentations:
 
 ```python
 from torch_geometric.datasets import CoraFull
-from torch_geometric.data import Data
 from torch_geometric.loader import DataLoader
 import grafog.transforms as T
 
