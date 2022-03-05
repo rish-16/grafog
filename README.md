@@ -38,15 +38,16 @@ from torch_geometric.datasets import CoraFull
 from torch_geometric.loader import DataLoader
 import grafog.transforms as T
 
+# compose graph augmentations
 transforms = T.Compose([
-    T.RandomNodeDrop(),
-    T.RandomEdgeDrop(),
-    T.NoisyEdgeRemoval(),
-    T.IdealEdgeAddition(),
+  T.RandomNodeFeatureMasking(p=0.2),
+  T.DropEdge(p=0.25),
+  T.NodeFeatureMixup(),
+  ...
 ])
 
 data = CoraFull()
-data = T(data) # apply the augmentation(s)
+data = transforms(data) # apply the augmentation(s)
 train_loader = DataLoader(data, ...)
 ```
 
