@@ -26,10 +26,10 @@ $ pip install -e .
 ## Usage
 The library comes with the following data augmentations:
 
-1. Random Node Removal
-2. Random Edge Removal
-3. Noisy Edge Removal
-4. Ideal Edge Addition
+1. Random Node Drop
+2. Random Edge Drop
+3. Normalize Features
+3. MixUp Strategy
 
 > There are many more features to be added over time, so stay tuned!
 
@@ -40,15 +40,14 @@ import grafog.transforms as T
 
 # compose graph augmentations
 transforms = T.Compose([
-  T.RandomNodeFeatureMasking(p=0.2),
+  T.DropNode(p=0.2),
   T.DropEdge(p=0.25),
-  T.NodeFeatureMixup(),
+  T.MixUp(),
   ...
 ])
 
 data = CoraFull()
-data = transforms(data) # apply the augmentation(s)
-train_loader = DataLoader(data, ...)
+new_data = transforms(data) # apply the augmentation(s)
 ```
 
 ## Contributions
