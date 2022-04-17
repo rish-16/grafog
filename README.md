@@ -1,4 +1,4 @@
-# grafog \[WIP\]
+# grafog
 Graph Data Augmentation Library for PyTorch Geometric
 
 ## What is it?
@@ -35,26 +35,35 @@ The library comes with the following data augmentations:
 
 ```python
 from torch_geometric.datasets import CoraFull
-from torch_geometric.loader import DataLoader
 import grafog.transforms as T
 
-# compose graph augmentations
-transforms = T.Compose([
-  T.DropNode(p=0.2),
-  T.DropEdge(p=0.25),
-  T.MixUp(),
-  ...
+node_aug = T.Compose([
+    T.NodeDrop(p=0.45),
+    T.NodeMixUp(lamb=0.5, classes=7),
+    ...
+])
+
+edge_aug = T.Compose([
+    T.EdgeDrop(0=0.15),
+    T.EdgeFeatureMasking()
 ])
 
 data = CoraFull()
-new_data = transforms(data) # apply the augmentation(s)
+model = ...
+
+for epoch in range(10): # begin training loop
+    new_data = node_aug(data) # apply the node augmentation(s)
+    new_data = edge_aug(new_data) # apply the edge augmentation(s)
+    
+    x, y = new_data.x, new_data.y
+    ...
 ```
 
 ## Contributions
 If you spot any issues, feel free to raise a PR or Issue. All meaningful contributions welcome!
 
 ## Remarks
-This library was built as a project for a class ([UIT2201]()) at NUS. I planned and built it over the span of 12 weeks. I thank Prof. Mikhail Filippov for his guidance, feedback, and support!
+This library was built as a project for a class ([UIT2201](https://nusmods.com/modules/UIT2201/computer-science-the-i-t-revolution)) at NUS. I planned and built it over the span of 10 weeks. I thank Prof. Mikhail Filippov for his guidance, feedback, and support!
 
 ## License
 [MIT](https://github.com/rish-16/grafog/blob/main/LICENSE)
