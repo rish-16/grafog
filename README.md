@@ -37,12 +37,14 @@ torch_geometric==2.0.3
 ## Usage
 The library comes with the following data augmentations:
 
-1. Random Node Drop
-2. Random Edge Drop
-3. Normalize Features
-4. MixUp Strategy
-5. Node Feature Masking
-6. Edge Feature Masking
+| Augmentation                 | Remarks                                            | When to use              |
+|------------------------------|----------------------------------------------------|--------------------------|
+| `NodeDrop(p=0.05)`           | Randomly drops nodes with the given `p`            | before, during training  |
+| `EdgeDrop(p=0.05)`           | Randomly drops edges with the given `p`            | before, during training  |
+| `Normalize()`                | Normalizes the node or edge features               | before training          |
+| `NodeMixUp(lamb, classes)`   | MixUp on node features with given lambda           | during training          |
+| `NodeFeatureMasking(p=0.15)` | Randomly masks node features with the given `p`    | during training          |
+| `EdgeFeatureMasking(p=0.15)` | Randomly masks edge features with the given `p`    | during training          |
 
 > There are many more features to be added over time, so stay tuned!
 
